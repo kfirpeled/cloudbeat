@@ -112,7 +112,7 @@ jobs:
             range: ''
             values_file: tests/deploy/values/ci.yml
           - test-target: file_system_rules
-            range: '0..5'
+            range: '0..1'
             values_file: tests/deploy/values/ci.yml
           # - test-target: file_system_rules
           #   range: '5..10'
