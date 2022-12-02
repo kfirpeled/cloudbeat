@@ -61,7 +61,6 @@ jobs:
           bucket: csp-allure-reports
           prefix: allure_reports/cloudbeat/prs/${{ env.PR_NUMBER }}
           ignoreMissingResults: true
-
       - name: Output to Job Summary
         id: report
         env:
