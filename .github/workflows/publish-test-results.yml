@@ -47,23 +47,6 @@ jobs:
           PR_NUM=$(gh api -X GET search/issues -f q='elastic/cloudbeat is:open is:pr is:unmerged ${{ github.event.workflow_run.head_sha }}' | jq  '.items[0].number' )
           echo "PR_NUMBER=$PR_NUM" >> $GITHUB_ENV
 
-      - name: Publish allure report
-        if: always()
-        uses: andrcuns/allure-publish-action@v1.0.1
-        env:
-          GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          storageType: s3
-          resultsGlob: "tests/allure/results/*"
-          updatePr: actions
-          collapseSummary: false
-          summary: suites
-          summaryTableType: markdown
-          copyLatest: true
-          bucket: csp-allure-reports
-          prefix: allure_reports/cloudbeat/prs/${{ env.PR_NUMBER }}
-          ignoreMissingResults: true
-
       - name: Output to Job Summary
         id: report
         if: ${{ github.event.workflow_run.event == 'pull_request' }}
